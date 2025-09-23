@@ -1,0 +1,31 @@
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
+
+# 1️⃣ Carregar modelo e tokenizer fine-tunado
+model_path = "./gpt2_sherlock"
+tokenizer = GPT2Tokenizer.from_pretrained(model_path)
+model = GPT2LMHeadModel.from_pretrained(model_path)
+
+# 2️⃣ Função para gerar texto
+def gerar_texto(prompt, max_length=200, temperature=0.7):
+    # Tokenizar input
+    inputs = tokenizer.encode(prompt, return_tensors="pt")
+    
+    # Gerar texto
+    outputs = model.generate(
+        inputs,
+        max_length=max_length,
+        do_sample=True,
+        temperature=temperature,
+        top_k=50,
+        top_p=0.95,
+        num_return_sequences=1
+    )
+    
+    # Decodificar output
+    texto_gerado = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    return texto_gerado
+
+# 3️⃣ Testar com um prompt
+prompt = "Sherlock Holmes entrou na sala e disse:"
+texto = gerar_texto(prompt, max_length=200)
+print(texto)

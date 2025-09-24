@@ -1,4 +1,4 @@
-arquivos = ["corpus.txt", "Corpus1.txt", "corpus2.txt"]
+arquivos = ["corpus.txt", "corpus1.txt", "corpus2.txt", "corpus3.txt", "corpus4.txt", "corpus5.txt", "corpus6.txt", "corpus7.txt", "corpus8.txt"]
 corpus_final = ""
 
 for arquivo in arquivos:
@@ -20,7 +20,7 @@ for arquivo in arquivos:
     corpus_final += "\n".join(linhas) + "\n\n"  # separa livros com duas linhas
 
 # Salvar o corpus final limpo
-with open("corpus_clean.txt", "w", encoding="utf-8") as f:
+with open("corpus_cleaned.txt", "w", encoding="utf-8") as f:
     f.write(corpus_final)
 
 print("corpus_clean.txt pronto com TODOS os livros limpos!")

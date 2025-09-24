@@ -31,6 +31,7 @@ def gerar_texto(prompt, max_length=200, temperature=0.7):
     return texto_gerado
 
 # 3️⃣ Testar com um prompt
-prompt = "Sherlock Holmes entrou na sala e disse:"
+prompt = "Sherlock Holmes entered the dimly lit room and immediately noticed:"
 texto = gerar_texto(prompt, max_length=200)
 print(texto)
+

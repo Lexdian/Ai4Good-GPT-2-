@@ -14,16 +14,19 @@ model.to(device)
 def gerar_texto(prompt, max_length=200, temperature=0.7):
     # Tokenizar input e mover para GPU
     inputs = tokenizer.encode(prompt, return_tensors="pt").to(device)
-    
+    attention_mask = torch.ones(inputs.shape, device=device)
+
     # Gerar texto
     outputs = model.generate(
         inputs,
+        attention_mask=attention_mask,
         max_length=max_length,
         do_sample=True,
         temperature=temperature,
         top_k=50,
         top_p=0.95,
-        num_return_sequences=1
+        num_return_sequences=1,
+        pad_token_id=tokenizer.eos_token_id
     )
     
     # Decodificar output
@@ -34,4 +37,3 @@ def gerar_texto(prompt, max_length=200, temperature=0.7):
 prompt = "Sherlock Holmes entered the dimly lit room and immediately noticed:"
 texto = gerar_texto(prompt, max_length=200)
 print(texto)
-
